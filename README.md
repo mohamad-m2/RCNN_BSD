@@ -2,10 +2,10 @@
 in this work, we try to detect and localize surface defects of type "pitting" on Ball Screw Drive dataset [[1]](#1). the dataset consists of 1104  RGB high resolution images of which 394 are annotated with pitting defects, the pitting size varries between very small pittings and large ones. also the dataset contain images with multiple pittings having different sizes.
 
 <p align="center">
-  <img src="./images/dataset/1.png" width="500">
-  <img src="./images/dataset/2.png"  width="400">
-  <img src="./images/dataset/3.png" width="500">
-  <img src="./images/dataset/4.png" width="400">
+  <img src="./images/dataset/1.png" width="450">
+  <img src="./images/dataset/2.png"  width="350">
+  <img src="./images/dataset/3.png" width="450">
+  <img src="./images/dataset/4.png" width="350">
 </p>
 
 # model and training
