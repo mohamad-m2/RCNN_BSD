@@ -15,12 +15,12 @@ in this work, we try to detect and localize surface defects of type "pitting" on
 
 # prediction visualizations
 <p align="center">
-  <img src="./images/predections/1_real.png" width="400">
-  <img src="./images/predections/1_predection.png"  width="400">
-  <img src="./images/predections/2_real.png" width="400">
-  <img src="./images/predections/2_predection.png" width="400">
-   <img src="./images/predections/3_real.png" width="400">
-  <img src="./images/predections/3_predection.png" width="400">
+  <img src="./images/predections/1_real.png" width="300">
+  <img src="./images/predections/1_predection.png"  width="300">
+  <img src="./images/predections/2_real.png" width="300">
+  <img src="./images/predections/2_predection.png" width="300">
+   <img src="./images/predections/3_real.png" width="300">
+  <img src="./images/predections/3_predection.png" width="300">
 </p>
 # Refrences
 <a id="1">[1]</a>  Tobias Schlagenhauf, Magnus Landwehr, and Jürgen Fleischer: Industrial Machine Tool Component Surface Defect Dataset (2021). https://github.com/2Obe/BSData.git
