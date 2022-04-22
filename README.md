@@ -14,6 +14,13 @@ in this work, we try to detect and localize surface defects of type "pitting" on
 - finally we train the model in 2 steps using dynamic waiting of the losses such that the model correctly detect and predict the bounding boxes with high confidence first then focuses on the segmentation task. so for the first step we have high waits for all the losses except the mask loss while in the second step all losses have approximately simillar waits.
 
 # prediction visualizations
-
+<p align="center">
+  <img src="./images/predections/1_real.png" width="450">
+  <img src="./images/predections/1_predection.png"  width="450">
+  <img src="./images/predections/2_real.png" width="450">
+  <img src="./images/predections/2_predection.png" width="450">
+   <img src="./images/predections/3_real.png" width="450">
+  <img src="./images/predections/3_predection.png" width="450">
+</p>
 # Refrences
 <a id="1">[1]</a>  Tobias Schlagenhauf, Magnus Landwehr, and Jürgen Fleischer: Industrial Machine Tool Component Surface Defect Dataset (2021). https://github.com/2Obe/BSData.git
