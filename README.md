@@ -14,7 +14,7 @@ In this work, we try to detect and localize surface defects of type "pitting" on
 - Finally we train the model in 2 steps using dynamic wheighting of the losses such that the model correctly detect and predict the bounding boxes with high confidence first then focuses on the segmentation task. So for the first step we have high wheights for all the losses except the mask loss while in the second step all losses have approximately simillar wheights.
 
 # prediction visualizations
-<h3 align="center">real vs predection</h3>
+<h3 align="center">real vs prediction</h3>
 <p align="center">
   <img src="./images/predections/1_real.png" width="400">
   <img src="./images/predections/1_predection.png"  width="400">
@@ -24,5 +24,5 @@ In this work, we try to detect and localize surface defects of type "pitting" on
   <img src="./images/predections/3_predection.png" width="400">
 </p>
 
-# Refrences
+# References
 <a id="1">[1]</a>  Tobias Schlagenhauf, Magnus Landwehr, and Jürgen Fleischer: Industrial Machine Tool Component Surface Defect Dataset (2021). https://github.com/2Obe/BSData.git
