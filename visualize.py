@@ -107,7 +107,7 @@ def post_process(annotation,intersection_threshold=0.5,score_threshold=0.25):
     if(indexes[j]==1):
       for i in range(j+1,annotation["scores"].shape[0]):
         intersection=get_intersection(annotation["boxes"][i],annotation["boxes"][j])
-        if(intersection>intersection_threshold):
+        if(intersection>intersection_threshold and annotation["labels"][i]==annotation["labels"][j]):
           indexes[i]=0
     j+=1
   
