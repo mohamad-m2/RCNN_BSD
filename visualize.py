@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 from torchvision import transforms
 from skimage import measure
-
-def visualize(image_v,annotaions,format=0):
+import torch
+def visualize(image_v,annotations,format=0):
   if(format==0):
     image_path = 'BSData/data/'+image_v["file_name"]
     image = cv2.imread(image_path)
@@ -26,13 +26,13 @@ def visualize(image_v,annotaions,format=0):
     image=np.array(transforms.ToPILImage()(image_v)) 
 
     image=cv2.cvtColor(image, cv2.COLOR_RGB2BGR) 
-    bbox = annotaions["boxes"]
-    mask=annotaions['masks']
-    label=annotaions["labels"]
+    if("scores" in annotations):
+      annotations=post_process(annotations)
+    bbox = annotations["boxes"]
+    mask=annotations['masks']
+    label=annotations["labels"]
+
     for i in range(len(label)):
-      if 'scores' in annotaions.keys():
-        if annotaions['scores'][i]<0.5:
-          continue
 
       if label[i].item()==0:
         continue
@@ -58,3 +58,80 @@ def visualize(image_v,annotaions,format=0):
           cv2.drawContours(image, seg, -1, (50,200,100), 1)
         
     cv2_imshow(image)
+
+
+def get_intersection(bb1, bb2):
+  """
+  Calculate the Intersection over Union (IoU) of two bounding boxes.
+
+  Parameters
+  ----------
+  bb1 : tensor
+      [x1,y1,x2,y2]
+  bb2 : tensor
+      [x1,y1,x2,y2]
+
+  Returns
+  -------
+  float
+      in [0, 1]
+  """
+
+  # determine the coordinates of the intersection rectangle
+  x_left = max(bb1[0], bb2[0])
+  y_top = max(bb1[1], bb2[1])
+  x_right = min(bb1[2], bb2[2])
+  y_bottom = min(bb1[3], bb2[3])
+
+  if x_right < x_left or y_bottom < y_top:
+      return 0.0
+
+  # The intersection of two axis-aligned bounding boxes is always an
+  # axis-aligned bounding box
+  intersection_area = (x_right - x_left) * (y_bottom - y_top)
+
+  # compute the area of both AABBs
+  bb1_area = (bb1[2] - bb1[0]) * (bb1[3] - bb1[1])
+  bb2_area = (bb2[2] - bb2[0]) * (bb2[3] - bb2[1])
+  intersection = intersection_area / min(bb1_area,bb2_area)
+  return intersection
+
+def post_process(annotation):
+  mask=[]
+  scores=[]
+  label=[]
+  box=[]
+  j=0
+  indexes=[1]*annotation["scores"].shape[0]
+  while(j<annotation["scores"].shape[0]):
+    if(indexes[j]==1):
+      for i in range(j+1,annotation["scores"].shape[0]):
+        intersection=get_intersection(annotation["boxes"][i],annotation["boxes"][j])
+        if(intersection>0.5):
+          indexes[i]=0
+    j+=1
+  
+  for i in range(len(indexes)):
+    if(indexes[i]==1 and annotation["scores"][i]>0.25):
+        mask.append(annotation["masks"][i])
+        scores.append(annotation["scores"][i])
+        label.append(annotation["labels"][i])
+        box.append(annotation["boxes"][i])
+  if(len(scores)>0):
+    return {
+      "scores":torch.stack(scores),
+      "masks":torch.stack(mask),
+      "boxes":torch.stack(box),
+      "labels":torch.stack(label),
+    }
+  else:
+    return{
+      "scores":torch.tensor([]),
+      "masks":torch.tensor([]),
+      "boxes":torch.tensor([]),
+      "labels":torch.tensor([]),
+    }
+
+
+
+
