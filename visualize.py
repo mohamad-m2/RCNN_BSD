@@ -4,7 +4,7 @@ import numpy as np
 from torchvision import transforms
 from skimage import measure
 import torch
-def visualize(image_v,annotations,format=0):
+def visualize(image_v,annotations,format=0,threshold=0.25):
   if(format==0):
     image_path = 'BSData/data/'+image_v["file_name"]
     image = cv2.imread(image_path)
@@ -27,7 +27,7 @@ def visualize(image_v,annotations,format=0):
 
     image=cv2.cvtColor(image, cv2.COLOR_RGB2BGR) 
     if("scores" in annotations):
-      annotations=post_process(annotations)
+      annotations=post_process(annotations,score_threshold=threshold)
     bbox = annotations["boxes"]
     mask=annotations['masks']
     label=annotations["labels"]
