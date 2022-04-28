@@ -34,8 +34,7 @@ below are some MAP scores
 |                |              |
 | :----------:   | :----------: |
 |map             |0.46          |
-|map_40          |              |
-|map_small       |              |
-|map_large       |              |
+|map_small       |0.0294        |
+|map_large       |0.606         |
 # References
 <a id="1">[1]</a>  Tobias Schlagenhauf, Magnus Landwehr, and Jürgen Fleischer: Industrial Machine Tool Component Surface Defect Dataset (2021). https://github.com/2Obe/BSData.git
