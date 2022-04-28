@@ -96,7 +96,7 @@ def get_intersection(bb1, bb2):
   intersection = intersection_area / min(bb1_area,bb2_area)
   return intersection
 
-def post_process(annotation):
+def post_process(annotation,intersection_threshold=0.5,score_threshold=0.25):
   mask=[]
   scores=[]
   label=[]
@@ -107,12 +107,12 @@ def post_process(annotation):
     if(indexes[j]==1):
       for i in range(j+1,annotation["scores"].shape[0]):
         intersection=get_intersection(annotation["boxes"][i],annotation["boxes"][j])
-        if(intersection>0.5):
+        if(intersection>intersection_threshold):
           indexes[i]=0
     j+=1
   
   for i in range(len(indexes)):
-    if(indexes[i]==1 and annotation["scores"][i]>0.25):
+    if(indexes[i]==1 and annotation["scores"][i]>score_threshold):
         mask.append(annotation["masks"][i])
         scores.append(annotation["scores"][i])
         label.append(annotation["labels"][i])
