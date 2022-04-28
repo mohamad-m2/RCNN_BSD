@@ -29,11 +29,13 @@ those post processing methods are  implemented in `visualize.py`
 </p>
 
 # MAP scores
-since the resources used for this work were limited the model was trained with batch size=2 and for 10-20 epochs , the model is not able to recognize small objects 
+since the resources used for this work were limited the model was trained with batch size=2 and for 10-20 epochs as a result the model is not able to recognize small objects and some medium sized ones.
 below are some MAP scores
-  |map|0.46|
-  |map_40||
-  |map_small||
-  |map_large||
+|                |              |
+| :----------:   | :----------: |
+|map             |0.46          |
+|map_40          |              |
+|map_small       |              |
+|map_large       |              |
 # References
 <a id="1">[1]</a>  Tobias Schlagenhauf, Magnus Landwehr, and Jürgen Fleischer: Industrial Machine Tool Component Surface Defect Dataset (2021). https://github.com/2Obe/BSData.git
