@@ -33,8 +33,9 @@ since the resources used for this work were limited the model was trained with b
 below are some MAP scores
 |                |              |
 | :----------:   | :----------: |
-|map             |0.46          |
+|map@0.5-0.95    |0.46          |
 |map_small       |0.0294        |
 |map_large       |0.606         |
+|map@50          |0.7035        |
 # References
 <a id="1">[1]</a>  Tobias Schlagenhauf, Magnus Landwehr, and Jürgen Fleischer: Industrial Machine Tool Component Surface Defect Dataset (2021). https://github.com/2Obe/BSData.git
