@@ -4,13 +4,7 @@ from torchvision.models.detection import MaskRCNN
 from torchvision.models.detection.anchor_utils import AnchorGenerator
 import torch.nn as nn
 
-# load a pre-trained model for classification and return
-# only the features
-backbone=nn.Sequential(*list(torchvision.models.resnet50(pretrained=True).children())[:-2])
-# MaskRCNN needs to know the number of
-# output channels in a backbone. For mobilenet_v2, it's 1280
-# so we need to add it here
-backbone.out_channels = 2048
+
 
 # let's make the RPN generate 5 x 3 anchors per spatial
 # location, with 5 different sizes and 3 different aspect
@@ -36,7 +30,15 @@ mask_roi_pooler = torchvision.ops.MultiScaleRoIAlign(featmap_names=['0'],
                                                     sampling_ratio=2)
 # put the pieces together inside a MaskRCNN model
 
-def get_model(number_classes):
+def get_model(number_classes,model='resnset50'):
+  # load a pre-trained model for classification and return
+  # only the features
+  if(model=='resnset50'):
+    backbone=nn.Sequential(*list(torchvision.models.resnet50(pretrained=True).children())[:-2])
+  else:
+    backbone=nn.Sequential(*list(torchvision.models.resnet101(pretrained=True).children())[:-2])
+  
+  backbone.out_channels = 2048
   model = MaskRCNN(backbone,
                 num_classes=number_classes,
                 rpn_anchor_generator=anchor_generator,
