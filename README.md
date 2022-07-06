@@ -1,5 +1,5 @@
 # Pitting localization and segmentation using RCNN
-In this work, we try to detect and localize surface defects of type "pitting" on Ball Screw Drive dataset [[1]](#1). The dataset consists of 1104  RGB high resolution images of which 394 are annotated with pitting defects, the pitting size varries between very small pittings and large ones. also the dataset contain images with multiple pittings having different sizes.
+In this work, we try to detect and localize surface defects of type "pitting" on Ball Screw Drive dataset [[1]](#1). The dataset consists of 1104  RGB high resolution images of which 394 are annotated with pitting defects, the pitting size varries between very small pittings and large ones. also the dataset contains images with multiple pittings having different sizes.
 
 <p align="center">
   <img src="./images/dataset/1.png" width="450">
